@@ -24,6 +24,18 @@ class ProdukController extends BaseController
     }
     public function create()
     {
+        $validation = \Config\Services::validation();
+
+        $validation->setRules([
+            'nama' => ['label' => 'Nama', 'rules' => 'required|min_length[3]'],
+            'harga' => ['label' => 'Harga', 'rules' => 'required|numeric'],
+            'jumlah' => ['label' => 'Jumlah', 'rules' => 'required|numeric']
+        ]);
+
+        if (!$validation->withRequest($this->request)->run()) {
+            return redirect()->back()->withInput()->with('errors', $validation->getErrors());
+        }
+
         $dataFoto = $this->request->getFile('foto');
 
         $dataForm = [

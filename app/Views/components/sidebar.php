@@ -24,6 +24,19 @@
       </a>
     </li><!-- End Dashboard Nav -->
 
+    <?php
+    if (session()->role == 'admin') {
+      ?>
+      <li class="nav-item">
+        <a class="nav-link <?php echo (uri_string() == 'transaksi') ? "" : "collapsed" ?>" href="transaksi">
+          <i class="bi bi-wallet"></i>
+          <span>Transaksi</span>
+        </a>
+      </li>
+      <?php
+    }
+    ?><!-- End Profile Nav -->
+
     <li class="nav-item">
       <a class="nav-link <?php echo (uri_string() == 'profile') ? "" : "collapsed" ?>" href="profile">
         <i class="bi bi-person"></i>
@@ -37,7 +50,7 @@
         <span>FAQ</span>
       </a>
     </li><!-- End Dashboard Nav -->
-    
+
     <li class="nav-item">
       <a class="nav-link <?php echo (uri_string() == 'contact') ? "" : "collapsed" ?>" href="#">
         <i class="bi bi-envelope"></i>
